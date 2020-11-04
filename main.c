@@ -13,6 +13,9 @@
 #include "hash.h"
 #include "ArvoreLLRB.h"
 
+//Flag para indicar uma tabela hash cheia
+int flag = 0;
+
 // Calcula a função de espalhamento
 int funcao(int k, int tamanho, int i){
     return ((k+i)%tamanho);
@@ -47,7 +50,9 @@ void Insere_Hash(no_hash *T, int tamanho, int k){
         else
             i++;
     }while(i < tamanho);
-    printf("\nTabela cheia!");
+    if(i == tamanho)
+        flag = 1;
+    printf("\nTabela cheia! ");
 }
 
 int Busca_Hash(no_hash *T, int tamanho, int k, int i){
@@ -109,6 +114,15 @@ int main(){
                 scanf("%d", &k);
 
                 Insere_Hash(T, tamanho, k);
+                if(flag == 1){
+                    printf("Inserindo na arvore\n");
+
+                    if(insere_ArvLLRB(raiz, k))
+                        printf("%d inserido com sucesso!\n", k);
+                    else
+                        printf("%d nao foi inserido!\n", k);
+                }
+
                 break;
             case 'b':
                 system("cls"); //limpa a tela
