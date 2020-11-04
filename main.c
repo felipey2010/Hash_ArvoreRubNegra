@@ -87,6 +87,17 @@ int Remove_Hash(no_hash *T, int tamanho, int k){
     }
 }
 
+void imprimeHash(no_hash *T, int tamanho){
+ int  i = 0;
+ printf("\n********IMPRIMINDO TABELA********\n");
+ for(i = 0; i < tamanho; i++){
+  if(T[i].state == 2){
+    printf("%d ", T[i].data);
+  }
+ }
+   printf("\n**************\n");
+}
+
 int main(){
     int tamanho, i, k;
     char resp;
@@ -102,7 +113,8 @@ int main(){
 
     while(1){
         printf("\n*********MENU*********");
-        printf("\nInserir (i) \nBuscar (b) \nRemover (r) \nImprimir Colisoes (p) \nSair (s)\n");
+        printf("\nInserir (i) \nBuscar (b) \nRemover (r) \nImprimir Colisoes (p)");
+        printf("\nImprimir Tabela (t)\nSair (s)\n");
         printf("\n**********************\nOpcao: ");
         resp = getchar();
         getchar();
@@ -146,6 +158,9 @@ int main(){
                 break;
             case 'p':
                 preOrdem_ArvLLRB(raiz, 0);
+                break;
+            case 't':
+                imprimeHash(T, tamanho);
                 break;
             case 's':
                 libera_ArvLLRB(raiz);
